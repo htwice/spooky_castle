@@ -1,0 +1,35 @@
+[gd_scene load_steps=3 format=3 uid="uid://kck8gxcdv57c"]
+
+[ext_resource type="Script" path="res://Scene/title_screen.gd" id="1_g78im"]
+[ext_resource type="Script" path="res://Scene/Purchase.gd" id="2_pgle2"]
+
+[node name="title_screen" type="Node2D"]
+script = ExtResource("1_g78im")
+
+[node name="Menu" type="ColorRect" parent="."]
+offset_left = -248.0
+offset_top = -175.0
+offset_right = 252.0
+offset_bottom = 238.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0431373, 0.145098, 0.137255, 1)
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 0
+offset_left = 182.0
+offset_top = 44.0
+offset_right = 330.0
+offset_bottom = 70.0
+text = "Spooky Castle"
+
+[node name="new_game" type="Button" parent="Menu"]
+layout_mode = 0
+offset_left = 192.0
+offset_top = 159.0
+offset_right = 301.0
+offset_bottom = 190.0
+text = "New Game"
+script = ExtResource("2_pgle2")
+
+[node name="Camera2D" type="Camera2D" parent="."]

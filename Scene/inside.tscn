@@ -1,0 +1,105 @@
+[gd_scene load_steps=6 format=3 uid="uid://npnyqagksn71"]
+
+[ext_resource type="Texture2D" uid="uid://7kpkgg683cpc" path="res://Assets/spookycastle.png" id="1_2cg53"]
+[ext_resource type="Script" path="res://Scene/Purchase.gd" id="1_6c7tu"]
+[ext_resource type="PackedScene" uid="uid://bg7rpiubrhh1b" path="res://Scene/character.tscn" id="2_5eilt"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_sorv5"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_n7d6a"]
+size = Vector3(20, 20, 1)
+
+[node name="inside" type="Node2D"]
+
+[node name="Menu" type="ColorRect" parent="."]
+offset_left = 150.0
+offset_right = 650.0
+offset_bottom = 200.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+color = Color(0.0431373, 0.145098, 0.137255, 1)
+
+[node name="Label" type="Label" parent="Menu"]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+text = "Menu"
+
+[node name="Button" type="Button" parent="Menu"]
+layout_mode = 0
+offset_top = 60.0
+offset_right = 80.0
+offset_bottom = 91.0
+text = "Attack Speed"
+script = ExtResource("1_6c7tu")
+
+[node name="Background" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Score" type="Label" parent="Background"]
+top_level = true
+layout_mode = 0
+offset_left = 8.0
+offset_top = 43.0
+offset_right = 96.0
+offset_bottom = 88.0
+theme_override_font_sizes/font_size = 30
+text = "Score:"
+
+[node name="Sprite2D" type="Sprite2D" parent="Background"]
+z_index = -1
+position = Vector2(401, 383)
+texture = ExtResource("1_2cg53")
+
+[node name="Boundaries" type="Node" parent="."]
+
+[node name="Object" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(833, 401)
+scale = Vector2(2.44, 42.52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Object"]
+shape = SubResource("RectangleShape2D_sorv5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Boundaries/Object"]
+mesh = SubResource("BoxMesh_n7d6a")
+
+[node name="Object2" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(-35, 392)
+scale = Vector2(2.44, 42.52)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Object2"]
+shape = SubResource("RectangleShape2D_sorv5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Boundaries/Object2"]
+mesh = SubResource("BoxMesh_n7d6a")
+
+[node name="Object3" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(401, -42)
+scale = Vector2(41.4994, 3.08347)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Object3"]
+shape = SubResource("RectangleShape2D_sorv5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Boundaries/Object3"]
+mesh = SubResource("BoxMesh_n7d6a")
+
+[node name="Object4" type="StaticBody2D" parent="Boundaries"]
+position = Vector2(399, 818)
+scale = Vector2(41.4994, 3.08347)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Boundaries/Object4"]
+shape = SubResource("RectangleShape2D_sorv5")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Boundaries/Object4"]
+mesh = SubResource("BoxMesh_n7d6a")
+
+[node name="Character" parent="." instance=ExtResource("2_5eilt")]
+position = Vector2(400, 386)
+
+[node name="Camera2D" parent="Character" index="3"]
+zoom = Vector2(1, 1)
+
+[editable path="Character"]
