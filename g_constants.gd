@@ -1,6 +1,6 @@
 extends Node
 
-var roundStart = false
+var roundActive = false
 
 var waveSettings = [[1,2,3],[4,10,4],[6,12,6],[8,16,24]]
 

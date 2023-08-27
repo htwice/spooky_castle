@@ -5,11 +5,13 @@ extends Node2D
 var Score = 0
 var Coin = 0
 
+#ROUND HANDLER
 
 func _ready():
 	#Hide Retry UI on Start
 	$Retry.hide()
 	$Menu.hide()
+	GConstants.roundActive = true
 	#Get "Respawn" mapping name
 	var respawn_events = InputMap.action_get_events("Respawn")
 	var respawn_event = respawn_events[0]
@@ -23,7 +25,10 @@ func _process(_delta):
 	Background.get_node("Score").set("text", "Score: " + str(Score) + "\nCoins: " + str(Coin) + "\nWave: " + str(GConstants.waveNumber))
 	
 	#if player hits respawn button, start and stop spawning ./
-	
+	if(GConstants.roundActive == false):
+		$Menu.show()
+		get_tree().change_scene_to_file("res://Scene/inside.tscn")
+	"""
 	if Input.is_action_just_pressed("Respawn"):
 		var roundActive = GConstants.roundStart
 		print(roundActive)
@@ -36,5 +41,5 @@ func _process(_delta):
 			print(GConstants.waveNumber)
 			GConstants.waveNumber += 1
 			print(GConstants.waveNumber)
-			
+	"""
 

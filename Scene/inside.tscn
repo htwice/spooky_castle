@@ -1,8 +1,8 @@
 [gd_scene load_steps=8 format=3 uid="uid://npnyqagksn71"]
 
 [ext_resource type="Texture2D" uid="uid://7kpkgg683cpc" path="res://Assets/spookycastle.png" id="1_2cg53"]
-[ext_resource type="Script" path="res://Scene/Purchase.gd" id="1_6c7tu"]
 [ext_resource type="PackedScene" uid="uid://bg7rpiubrhh1b" path="res://Scene/character.tscn" id="2_5eilt"]
+[ext_resource type="Script" path="res://Code/Purchase.gd" id="2_7dk14"]
 [ext_resource type="Script" path="res://Code/door.gd" id="4_dbj66"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_l8pfc"]
@@ -34,7 +34,7 @@ color = Color(0.0431373, 0.145098, 0.137255, 1)
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
-text = "Menu"
+text = "Round Complete!"
 
 [node name="Button" type="Button" parent="Menu"]
 layout_mode = 0
@@ -42,7 +42,7 @@ offset_top = 60.0
 offset_right = 80.0
 offset_bottom = 91.0
 text = "Attack Speed"
-script = ExtResource("1_6c7tu")
+script = ExtResource("2_7dk14")
 
 [node name="Background" type="Control" parent="."]
 visible = false
@@ -108,8 +108,24 @@ shape = SubResource("RectangleShape2D_sorv5")
 [node name="MeshInstance2D" type="MeshInstance2D" parent="Boundaries/Object4"]
 mesh = SubResource("BoxMesh_n7d6a")
 
-[node name="Character" parent="." instance=ExtResource("2_5eilt")]
+[node name="Area2D" type="Area2D" parent="."]
 position = Vector2(400, 386)
+script = ExtResource("4_dbj66")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(300, 0)
+scale = Vector2(3, 3)
+shape = SubResource("CircleShape2D_l8pfc")
+
+[node name="Label" type="Label" parent="Area2D"]
+offset_left = 218.0
+offset_top = -91.0
+offset_right = 399.0
+offset_bottom = -65.0
+text = "Commence buttfucking"
+
+[node name="Character" parent="." instance=ExtResource("2_5eilt")]
+position = Vector2(78, 396)
 
 [node name="CollisionShape2D" parent="Character" index="0"]
 scale = Vector2(3, 3)
@@ -117,13 +133,7 @@ scale = Vector2(3, 3)
 [node name="Camera2D" parent="Character" index="3"]
 zoom = Vector2(1, 1)
 
-[node name="Area2D" type="Area2D" parent="Character"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Character/Area2D"]
-scale = Vector2(3, 3)
-shape = SubResource("CircleShape2D_l8pfc")
-
-[connection signal="area_entered" from="Character/Area2D" to="door_to_outside" method="_on_area_2d_area_entered"]
-[connection signal="body_entered" from="Character/Area2D" to="door_to_outside" method="_on_area_2d_body_entered"]
+[connection signal="area_entered" from="Area2D" to="door_to_outside" method="_on_area_2d_area_entered"]
+[connection signal="body_entered" from="Area2D" to="door_to_outside" method="_on_area_2d_body_entered"]
 
 [editable path="Character"]

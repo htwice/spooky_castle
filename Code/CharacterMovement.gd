@@ -59,8 +59,8 @@ func _physics_process(delta):
 
 	if direction_x:
 		velocity.x = direction_x * SPEED
-	if direction_y:
-		velocity.y = direction_y * SPEED
+	#if direction_y:
+	#	velocity.y = direction_y * SPEED
 		
 	# look at mouse
 	self.look_at(get_global_mouse_position())

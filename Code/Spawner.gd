@@ -17,7 +17,7 @@ func _process(delta):
 	timer += delta
 	# Handle spawning
 	if timer >= actual_spawn_interval - 1 && !get_node("AnimationPlayer").is_playing():
-		if(get_node("/root/GConstants").roundStart == true):
+		if(get_node("/root/GConstants").roundActive == true):
 			get_node("AnimationPlayer").play("spawn")
 
 func spawn():
@@ -31,8 +31,10 @@ func spawn():
 		actual_spawn_interval = spawn_interval + randf_range(GConstants.waveSettings[0][0], GConstants.waveSettings[0][1])
 	counter += 1
 	print(counter)
-	print(GConstants.waveSettings[GConstants.waveNumber][1])  
+	print(GConstants.waveSettings[GConstants.waveNumber][1])
+	print("Round active?")
+	print(GConstants.roundActive)  
 	if(counter > GConstants.waveSettings[GConstants.waveNumber][1]):
-		GConstants.roundStart = false
+		GConstants.roundActive = false
 		GConstants.waveNumber += 1
 		counter = 0
